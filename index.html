@@ -758,9 +758,77 @@
             background: linear-gradient(135deg, #f0f0f0, #d4d4d4);
         }
 
+        /* ========== MESSAGES / GUESTBOOK ========== */
+        .messages-section {
+            background: var(--cream);
+            padding: 100px 0;
+        }
+
+        .messages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 10px;
+        }
+
+        .message-card {
+            background: var(--white);
+            padding: 24px 28px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            border-left: 4px solid var(--gold);
+            transition: var(--transition);
+        }
+
+        .message-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .message-card .guest-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: var(--charcoal);
+            margin-bottom: 6px;
+        }
+
+        .message-card .guest-message {
+            color: var(--text-light);
+            font-size: 0.95rem;
+            line-height: 1.6;
+            font-style: italic;
+        }
+
+        .message-card .guest-message::before {
+            content: '“';
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .message-card .guest-message::after {
+            content: '”';
+            font-size: 1.2rem;
+            color: var(--gold);
+        }
+
+        .message-card .no-message {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            opacity: 0.6;
+        }
+
+        .loading-message {
+            grid-column: 1 / -1;
+            text-align: center;
+            color: var(--text-light);
+            font-size: 1.1rem;
+            padding: 40px 0;
+        }
+
         /* ========== RSVP ========== */
         .rsvp-section {
-            background: var(--cream);
+            background: var(--white);
         }
 
         .rsvp-wrapper {
@@ -784,7 +852,7 @@
         }
 
         .rsvp-info .deadline {
-            background: var(--white);
+            background: var(--cream);
             padding: 20px 24px;
             border-radius: var(--radius);
             border-left: 4px solid var(--gold);
@@ -894,13 +962,6 @@
             min-height: 90px;
         }
 
-        .rsvp-form .form-row {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 16px;
-        }
-
-        /* Radio buttons styling inside the form */
         .rsvp-form .radio-group {
             display: flex;
             gap: 24px;
@@ -1244,10 +1305,6 @@
             .rsvp-form {
                 padding: 28px 18px;
             }
-            .rsvp-form .form-row {
-                grid-template-columns: 1fr;
-                gap: 0;
-            }
             .form-header h3 {
                 font-size: 1.5rem;
             }
@@ -1255,6 +1312,10 @@
                 gap: 12px;
                 flex-direction: column;
                 align-items: flex-start;
+            }
+
+            .messages-grid {
+                grid-template-columns: 1fr;
             }
 
             .hero-buttons {
@@ -1335,6 +1396,7 @@
                 <li><a href="#couple">Couple</a></li>
                 <li><a href="#events">Events</a></li>
                 <li><a href="#gallery">Gallery</a></li>
+                <li><a href="#messages">Messages</a></li>
                 <li><a href="#rsvp" class="nav-rsvp-btn">RSVP</a></li>
             </ul>
             <div class="hamburger" id="hamburger" aria-label="Toggle menu">
@@ -1506,6 +1568,28 @@
                     🌺
                     <div class="overlay">💕</div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== MESSAGES FROM GUESTS (LIVE GUESTBOOK) ========== -->
+    <section class="messages-section" id="messages">
+        <div class="container">
+            <div class="text-center reveal">
+                <span class="section-label">Guestbook</span>
+                <h2 class="section-title">Messages from <span>Our Guests</span></h2>
+                <p class="section-subtitle">Kind words and warm wishes from those who will celebrate with us.</p>
+            </div>
+
+            <!-- Refresh Button -->
+            <div style="text-align:center; margin-bottom:20px;">
+                <button onclick="loadMessages()" class="btn-secondary" style="padding:10px 30px; font-size:0.9rem;">
+                    🔄 Refresh Messages
+                </button>
+            </div>
+
+            <div id="messagesContainer" class="messages-grid">
+                <div class="loading-message">💬 Loading messages...</div>
             </div>
         </div>
     </section>
@@ -1728,7 +1812,6 @@
         // ===== BEAUTIFIED RSVP FORM HANDLER =====
         const rsvpForm = document.getElementById('customRsvpForm');
         const submitBtn = document.getElementById('rsvpSubmitBtn');
-        const formWrapper = document.getElementById('rsvpFormWrapper');
         const successDiv = document.getElementById('formSuccess');
         const hiddenIframe = document.getElementById('hidden_iframe');
 
@@ -1776,6 +1859,65 @@
                 submitBtn.textContent = 'Send RSVP ✨';
             }
         }, true);
+
+        // ===== LOAD & DISPLAY MESSAGES FROM GOOGLE SHEET (via Sheet.best) =====
+        const MESSAGES_API = 'https://api.sheetbest.com/sheets/dc0819c0-4c39-4e8d-8b6c-988ba4fb7331';
+
+        async function loadMessages() {
+            const container = document.getElementById('messagesContainer');
+            container.innerHTML = '<div class="loading-message">💬 Loading messages...</div>';
+
+            try {
+                const response = await fetch(MESSAGES_API);
+                if (!response.ok) throw new Error('Failed to fetch');
+                const data = await response.json();
+
+                // Filter out entries without a name
+                const messages = data.filter(row => row.NAME && row.NAME.trim() !== '');
+
+                if (messages.length === 0) {
+                    container.innerHTML = '<div class="loading-message">✨ No messages yet. Be the first to leave a note!</div>';
+                    return;
+                }
+
+                let html = '';
+                messages.forEach(row => {
+                    const name = row.NAME || 'Anonymous';
+                    const message = row['MESSAGE FOR THE COUPLE'] || '';
+                    const hasMessage = message.trim() !== '';
+
+                    html += `
+                        <div class="message-card reveal">
+                            <div class="guest-name">${escapeHtml(name)}</div>
+                            ${hasMessage ? `<div class="guest-message">${escapeHtml(message)}</div>` 
+                                         : `<div class="no-message">(No message left)</div>`}
+                        </div>
+                    `;
+                });
+
+                container.innerHTML = html;
+
+                // Re-run reveal animation for new cards
+                document.querySelectorAll('.message-card.reveal').forEach(el => revealObserver.observe(el));
+
+            } catch (error) {
+                console.error('Error loading messages:', error);
+                container.innerHTML = '<div class="loading-message">⚠️ Could not load messages. Please try again later.</div>';
+            }
+        }
+
+        // Simple escape to prevent XSS
+        function escapeHtml(text) {
+            const div = document.createElement('div');
+            div.textContent = text;
+            return div.innerHTML;
+        }
+
+        // Load messages when the page loads
+        loadMessages();
+
+        // Auto-refresh messages every 30 seconds (optional)
+        setInterval(loadMessages, 30000);
 
         // ===== MUSIC TOGGLE =====
         let audioContext = null;
@@ -1847,6 +1989,8 @@
 
         console.log('💕 Welcome to Aria & James wedding website!');
         console.log('📋 RSVP data will be saved to your Google Form.');
+        console.log('💬 Guestbook is connected to Sheet.best API.');
     </script>
+
 </body>
 </html>
