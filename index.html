@@ -4,12 +4,12 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Faizol & Rabiatul — 18 December 2026 · Wedding Invitation</title>
-<meta name="description" content="Faizol and Rabiatul are getting married on 18 December 2026 at The Rosewood Garden Estate, Kuala Lumpur. Please RSVP by 1 May 2026." />
+<meta name="description" content="Faizol and Rabiatul are getting married on 18 December 2026 at Dewan Binjai, Kelantan. Please RSVP by 1 May 2026." />
 <meta name="theme-color" content="#FBF8F3" />
 
 <!-- Open Graph -->
 <meta property="og:title" content="Faizol & Rabiatul — Wedding Invitation" />
-<meta property="og:description" content="Friday, 18 December 2026 · The Rosewood Garden Estate, Kuala Lumpur. Kindly RSVP by 1 May 2026." />
+<meta property="og:description" content="Friday, 18 December 2026 · Dewan Binjai, Binjai, Kelantan. Kindly RSVP by 1 May 2026." />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1200&q=80" />
 
@@ -17,6 +17,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Great+Vibes&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+<!-- Preload the wedding song so it is ready the moment the intro appears -->
+<link rel="preload" href="our-song.mp3" as="audio" type="audio/mpeg" fetchpriority="high">
 
 <style>
 /* ============================================================
@@ -736,7 +739,6 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   .hero-actions{ flex-direction:column; align-items:stretch; }
   .hero-actions .btn{ text-align:center; }
 
-  /* venue cards become compact horizontal rows */
   .venue-grid{ grid-template-columns:1fr; gap:.7rem; margin-top:1.2rem; }
   .venue-card{
     flex-direction:row; align-items:center; text-align:left;
@@ -749,7 +751,6 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   .venue-card .venue-time{ margin-top:.5rem; }
   .venue-card .btn{ margin-top:.6rem; padding:.5rem 1.1rem; font-size:.56rem; }
 
-  /* travel cards compact 2-up */
   .travel-grid{ grid-template-columns:1fr 1fr; gap:.6rem; margin-top:1rem; }
   .travel-card{ padding:.9rem .85rem; }
   .travel-card h4{ font-size:.92rem; }
@@ -757,7 +758,6 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   .travel-card .tc-label{ font-size:.5rem; margin-bottom:.35rem; }
   .travel-card a.tc-link{ font-size:.5rem; margin-top:.4rem; }
 
-  /* timeline + FAQ tighten */
   .timeline{ padding-left:1.9rem; }
   .tl-item::before{ left:-1.9rem; }
   .tl-desc{ font-size:.78rem; }
@@ -765,7 +765,6 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   .faq-list summary{ font-size:.95rem; }
   .faq-list details p{ padding-right:0; font-size:.82rem; }
 
-  /* gallery — two large frames, third hidden */
   .gallery{ grid-template-columns:1fr 1fr; }
   .gallery figure{ aspect-ratio:4/5; }
   .gallery figure:last-child{ display:none; }
@@ -796,11 +795,11 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 
     <div class="intro-rule"></div>
 
-    <p class="intro-date">18 · 12 · 2026 · Budu Cap Ketereh</p>
+    <p class="intro-date">18 · 12 · 2026 · Dewan Binjai</p>
 
     <button class="intro-enter" id="enterBtn">Open Invitation</button>
 
-    <p class="intro-hint">Opening automatically…</p>
+    <p class="intro-hint">Tap to begin</p>
   </div>
 </div>
 
@@ -819,13 +818,13 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
     <p class="eyebrow">Together with their families</p>
 
     <h1 class="hero-names">
-      Rabiatul
-      <span class="amp">&amp;</span>
       Faizol
+      <span class="amp">&amp;</span>
+      Rabiatul
     </h1>
 
     <p class="hero-date">Friday · 18 December 2026</p>
-    <p class="hero-place">Binjai · Kelantan</p>
+    <p class="hero-place">Dewan Binjai · Kelantan</p>
 
     <div class="hero-actions">
       <a href="#rsvp" class="btn btn--light">RSVP Now</a>
@@ -935,37 +934,37 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       <div class="tl-item">
         <div class="tl-time">3:30 PM</div>
         <div class="tl-title">Guest Arrival</div>
-        <p class="tl-desc">Welcome drinks in the garden courtyard. Do come a little early — the light is lovely.</p>
+        <p class="tl-desc">Welcome drinks at the hall entrance. Do come a little early — the light is lovely.</p>
       </div>
 
       <div class="tl-item">
         <div class="tl-time">4:00 PM</div>
         <div class="tl-title">The Ceremony</div>
-        <p class="tl-desc">Vows beneath the old banyan tree. Please be seated by 3:55 PM.</p>
+        <p class="tl-desc">The akad nikah and bersanding, inside Dewan Binjai. Please be seated by 3:55 PM.</p>
       </div>
 
       <div class="tl-item">
         <div class="tl-time">5:00 PM</div>
-        <div class="tl-title">Cocktail Hour</div>
-        <p class="tl-desc">Canapés, photographs and golden-hour light on the lawn.</p>
+        <div class="tl-title">Photographs &amp; Refreshments</div>
+        <p class="tl-desc">Family portraits, canapés and golden-hour light on the hall terrace.</p>
       </div>
 
       <div class="tl-item">
         <div class="tl-time">7:00 PM</div>
         <div class="tl-title">Dinner &amp; Toasts</div>
-        <p class="tl-desc">A seated dinner in the glasshouse pavilion, with a few words from the people we love most.</p>
+        <p class="tl-desc">A seated dinner in the main hall, with a few words from the people we love most.</p>
       </div>
 
       <div class="tl-item">
         <div class="tl-time">9:00 PM</div>
-        <div class="tl-title">Dancing</div>
-        <p class="tl-desc">Until the last song plays. Comfortable shoes strongly encouraged.</p>
+        <div class="tl-title">Celebration</div>
+        <p class="tl-desc">Music, photos and time with everyone we love. Comfortable shoes encouraged.</p>
       </div>
 
       <div class="tl-item">
         <div class="tl-time">11:30 PM</div>
         <div class="tl-title">Farewell</div>
-        <p class="tl-desc">Cars and shuttles will be waiting at the main gate.</p>
+        <p class="tl-desc">Cars and shuttles will be waiting at the main entrance.</p>
       </div>
     </div>
   </div>
@@ -979,8 +978,8 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       <h2 class="section-title">The Venue</h2>
       <div class="ornament"><span>✦</span></div>
       <p class="lead" style="max-width:600px;margin:0 auto;">
-        A restored colonial estate tucked into the hills of Bukit Tunku —
-        all whitewashed walls, frangipani trees and wide green lawns.
+        Dewan Binjai — a warm, air-conditioned community hall in the heart
+        of Binjai, Kota Bharu, surrounded by the green paddy fields of Kelantan.
       </p>
     </div>
 
@@ -988,11 +987,11 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       <article class="venue-card">
         <div class="venue-icon">✦</div>
         <div class="venue-body">
-          <h3>The Rosewood Garden Estate</h3>
-          <p>12 Jalan Damai, Bukit Tunku<br>50480 Kuala Lumpur, Malaysia</p>
+          <h3>Dewan Binjai</h3>
+          <p>Binjai, Kota Bharu<br>Kelantan, Malaysia</p>
           <p class="venue-time">Ceremony · 4:00 PM</p>
           <a class="btn"
-             href="https://maps.google.com/?q=Bukit+Tunku+Kuala+Lumpur"
+             href="https://maps.google.com/?q=Dewan+Binjai+Kota+Bharu+Kelantan"
              target="_blank" rel="noopener">View Map</a>
         </div>
       </article>
@@ -1001,7 +1000,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
         <div class="venue-icon">✦</div>
         <div class="venue-body">
           <h3>Dress Code</h3>
-          <p>Garden formal in soft, warm tones —<br>creams, sage, dusty rose, warm sand.</p>
+          <p>Formal in soft, warm tones —<br>creams, sage, dusty rose, warm sand.</p>
           <p class="venue-time">Suggested Palette</p>
         </div>
       </article>
@@ -1010,7 +1009,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
         <div class="venue-icon">✦</div>
         <div class="venue-body">
           <h3>Good to Know</h3>
-          <p>Complimentary parking on site.<br>Ceremony is on grass — block heels advised.<br>Adults-only celebration, please.</p>
+          <p>Complimentary parking on site.<br>Ceremony is indoors — heels are fine.<br>Adults-only celebration, please.</p>
           <p class="venue-time">Notes</p>
         </div>
       </article>
@@ -1023,13 +1022,13 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   <div class="wrap map-wrap">
     <div class="map-head reveal">
       <p class="eyebrow">Directions</p>
-      <h2 class="section-title">Finding the Estate</h2>
+      <h2 class="section-title">Finding the Hall</h2>
     </div>
 
     <div class="map-strip reveal">
       <iframe
-        src="https://www.google.com/maps?q=Bukit+Tunku,+Kuala+Lumpur&output=embed"
-        title="Map showing The Rosewood Garden Estate area in Bukit Tunku, Kuala Lumpur"
+        src="https://www.google.com/maps?q=Dewan+Binjai,+Kota+Bharu,+Kelantan&output=embed"
+        title="Map showing Dewan Binjai in Kota Bharu, Kelantan"
         loading="lazy"
         referrerpolicy="no-referrer-when-downgrade">
       </iframe>
@@ -1050,39 +1049,39 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       <div class="travel-card">
         <span class="tc-label">By Car</span>
         <h4>Driving &amp; Parking</h4>
-        <p>Free parking for 80 cars inside the estate gates. Enter via Jalan Damai; attendants will direct you.</p>
+        <p>Complimentary parking on site. Enter via the Binjai main road; attendants will direct you to the hall.</p>
       </div>
 
       <div class="travel-card">
         <span class="tc-label">By Ride-Hailing</span>
         <h4>Grab / Taxi</h4>
-        <p>Ask for “The Rosewood Garden Estate, Jalan Damai”. Roughly 15 minutes from KLCC, 40 from the airport.</p>
+        <p>Ask for “Dewan Binjai, Kota Bharu”. Roughly 20 minutes from Kota Bharu town, 25 from the airport.</p>
       </div>
 
       <div class="travel-card">
         <span class="tc-label">Shuttle</span>
         <h4>Complimentary Shuttle</h4>
-        <p>Departs 3:00 PM from the Grand Millenium Hotel lobby and returns after the farewell at 11:30 PM.</p>
+        <p>Departs 3:00 PM from a central Kota Bharu pickup point (details shared after RSVP) and returns after the farewell at 11:30 PM.</p>
       </div>
 
       <div class="travel-card">
         <span class="tc-label">Where to Stay</span>
         <h4>Hotel Blocks</h4>
-        <p>We’ve reserved room blocks at the Grand Millenium and The Damai House. Mention “Olivia &amp; James” when booking.</p>
-        <a class="tc-link" href="mailto:hello@oliviaandjames.com?subject=Hotel%20block%20for%20the%20wedding">Ask us about rooms</a>
+        <p>We’ve reserved room blocks at selected hotels in Kota Bharu city centre. Mention “Faizol &amp; Rabiatul” when booking.</p>
+        <a class="tc-link" href="mailto:hello@faizolrabiatul.com?subject=Hotel%20block%20for%20the%20wedding">Ask us about rooms</a>
       </div>
 
       <div class="travel-card">
         <span class="tc-label">Flying In</span>
-        <h4>Kuala Lumpur (KUL)</h4>
-        <p>KLIA is about 45–60 minutes from the venue. We recommend arriving by Friday, 18 December.</p>
+        <h4>Kota Bharu (KBR)</h4>
+        <p>Sultan Ismail Petra Airport is about 25 minutes from the hall. We recommend arriving by Friday, 18 December.</p>
       </div>
 
       <div class="travel-card">
         <span class="tc-label">Need Help?</span>
         <h4>Wedding Hotline</h4>
-        <p>Our coordinator, Mei, is reachable on WhatsApp at +60 12-345 6789 from 9 AM to 9 PM.</p>
-        <a class="tc-link" href="https://wa.me/60123456789" target="_blank" rel="noopener">Message Mei</a>
+        <p>Our coordinator is reachable on WhatsApp at +60 12-345 6789 from 9 AM to 9 PM.</p>
+        <a class="tc-link" href="https://wa.me/60123456789" target="_blank" rel="noopener">Message our coordinator</a>
       </div>
     </div>
   </div>
@@ -1095,7 +1094,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       <p class="eyebrow">A few of our favourite moments</p>
     </div>
     <div class="gallery reveal">
-      <figure><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Olivia and James laughing together" loading="lazy"></figure>
+      <figure><img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=900&q=80" alt="Faizol and Rabiatul laughing together" loading="lazy"></figure>
       <figure><img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=900&q=80" alt="Bouquet and rings detail" loading="lazy"></figure>
       <figure><img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=900&q=80" alt="The couple in a sunlit field" loading="lazy"></figure>
     </div>
@@ -1124,7 +1123,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 
       <details>
         <summary>What should I wear?</summary>
-        <p>Garden formal: midi or floor-length dresses, suits or smart separates, in soft warm tones — cream, sage, dusty rose, warm sand. Please avoid white and ivory, and leave the stilettos at home; the ceremony is on grass.</p>
+        <p>Formal: midi or floor-length dresses, suits or smart separates, in soft warm tones — cream, sage, dusty rose, warm sand. Please avoid white and ivory.</p>
       </details>
 
       <details>
@@ -1134,7 +1133,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 
       <details>
         <summary>Is there parking at the venue?</summary>
-        <p>Yes — complimentary parking for around 80 cars inside the estate, with attendants to guide you. If you’d rather not drive, our shuttle leaves the Grand Millenium at 3:00 PM and returns after the farewell.</p>
+        <p>Yes — complimentary parking on site, with attendants to guide you. If you’d rather not drive, our shuttle leaves Kota Bharu city centre at 3:00 PM and returns after the farewell.</p>
       </details>
 
       <details>
@@ -1144,7 +1143,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 
       <details>
         <summary>What about dietary requirements?</summary>
-        <p>The RSVP form has a space for allergies and dietary needs. Tell us there and our kitchen will take care of the rest — vegetarian, vegan, gluten-free and halal options are all available.</p>
+        <p>The RSVP form has a space for allergies and dietary needs. Tell us there and our caterer will take care of the rest — vegetarian, vegan, gluten-free and halal options are all available.</p>
       </details>
 
       <details>
@@ -1154,7 +1153,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 
       <details>
         <summary>Is the venue accessible?</summary>
-        <p>Yes. The ceremony lawn, pavilion and restrooms are all step-free, with an accessible entrance at the main gate. Let us know on the RSVP form if you’d like reserved seating or any other assistance.</p>
+        <p>Yes. The main hall, dining area and restrooms are all step-free, with an accessible entrance at the main door. Let us know on the RSVP form if you’d like reserved seating or any other assistance.</p>
       </details>
     </div>
   </div>
@@ -1198,7 +1197,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
         frameborder="0"
         marginheight="0"
         marginwidth="0"
-        title="Olivia and James Wedding RSVP Form"
+        title="Faizol and Rabiatul Wedding RSVP Form"
         loading="lazy">
         Loading…
       </iframe>
@@ -1208,7 +1207,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       Having trouble with the form?
       <a href="https://docs.google.com/forms/d/e/1FAIpQLSdliwaz4U3KgY839Fytq99c9PZ0KnDSIr-hq5g6YJ_AUzFacw/viewform"
          target="_blank" rel="noopener">Open it in a new tab</a>.
-      Or email <a href="mailto:hello@oliviaandjames.com">hello@oliviaandjames.com</a>.
+      Or email <a href="mailto:hello@faizolrabiatul.com">hello@faizolrabiatul.com</a>.
     </p>
   </div>
 </section>
@@ -1231,7 +1230,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
       <p class="audio-embed-label">Starts at 0:30</p>
 
       <audio id="weddingAudio" controls preload="auto">
-        <!-- ⬇️ Change this filename to match your audio file ⬇️ -->
+        <!-- ⬇️ Rename your mp3 to our-song.mp3 and place it next to this HTML file ⬇️ -->
         <source src="Indila - Love Story (Extended Instrumental) [slowed + reverb] - swtnr.mp3" type="audio/mpeg">
         Your browser does not support the audio element.
       </audio>
@@ -1243,18 +1242,18 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 <footer class="footer">
   <div class="wrap-narrow">
     <p class="footer-script">Faizol &amp; Rabiatul</p>
-    <p class="footer-date">18 · 12 · 2026 · Kuala Lumpur</p>
+    <p class="footer-date">18 · 12 · 2026 · Binjai, Kelantan</p>
 
     <div class="footer-links">
       <a href="#top">Back to Top</a>
       <a href="#day">The Day</a>
       <a href="#venue">Venue</a>
       <a href="#rsvp">RSVP</a>
-      <a href="mailto:hello@oliviaandjames.com">Contact Us</a>
+      <a href="mailto:hello@faizolrabiatul.com">Contact Us</a>
     </div>
 
     <div class="footer-rule"></div>
-    <p class="footer-copy">Made with love · #Faizol&Rabiatul2026</p>
+    <p class="footer-copy">Made with love · #FaizolDanRabiatul2026</p>
   </div>
 </footer>
 
@@ -1270,15 +1269,15 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
    ⚙️  CONFIG — edit these
    ============================================================ */
 const WEDDING_DATE        = new Date('2026-12-18T15:30:00'); // 18 Dec 2026, guest arrival
-const AUDIO_START_SECONDS = 318;                               // start playback at 0:30
-const AUDIO_VOLUME        = 0.85;                             // 0.0 – 1.0
+const AUDIO_START_SECONDS = 316 ;                              // start playback at 0:30
+const AUDIO_VOLUME        = 0.85;                            // 0.0 – 1.0
 
-const AUTO_ENTER_MS       = 3500;   // intro auto-clicks itself after this long
-const TOUR_START_DELAY_MS = 800;    // pause on the hero before the tour begins
-const TOUR_SPEED          = 1;      // 1 = normal · 2 = twice as fast · 0.5 = half speed
+const AUTO_ENTER_MS       = 999999999; // intro waits for the visitor's tap (that tap unlocks the song)
+const TOUR_START_DELAY_MS = 800;       // pause on the hero before the tour begins
+const TOUR_SPEED          = 1;         // 1 = normal · 2 = twice as fast · 0.5 = half speed
 
 /* ============================================================
-   1. ANIMATED INTRO  (auto-clicks itself)
+   1. ANIMATED INTRO  (click-to-enter)
    ============================================================ */
 (function () {
   const intro    = document.getElementById('intro');
@@ -1300,7 +1299,7 @@ const TOUR_SPEED          = 1;      // 1 = normal · 2 = twice as fast · 0.5 = 
     document.body.classList.remove('intro-lock');
     document.body.classList.add('intro-done');
 
-    playWeddingAudio(fromUserGesture);
+    playWeddingAudio();
 
     window.setTimeout(() => {
       if (typeof window.startGuidedTour === 'function') window.startGuidedTour();
@@ -1320,38 +1319,39 @@ const TOUR_SPEED          = 1;      // 1 = normal · 2 = twice as fast · 0.5 = 
     }
   });
 
-  // ⏱️ Auto-click after a few seconds
+  // With AUTO_ENTER_MS huge, this effectively never fires — the visitor's tap is the trigger.
   autoTimer = window.setTimeout(() => enterSite(false), AUTO_ENTER_MS);
 })();
 
 /* ============================================================
-   2. WEDDING AUDIO — starts with the intro overlay
+   2. WEDDING AUDIO — plays as soon as data is available,
+      seeks to AUDIO_START_SECONDS the moment metadata arrives.
    ============================================================ */
 const weddingAudio = document.getElementById('weddingAudio');
-let audioStarted   = false;
+let audioStarted = false;
+let seekDone     = false;
 
 if (weddingAudio) weddingAudio.volume = AUDIO_VOLUME;
 
 function playWeddingAudio() {
-  if (!weddingAudio) return;
+  if (!weddingAudio || audioStarted) return;
 
-  const seekAndPlay = () => {
-    if (audioStarted) return;               // already rolling — don't re-seek
-
+  const seek = () => {
+    if (seekDone || weddingAudio.readyState < 1) return;
     try { weddingAudio.currentTime = AUDIO_START_SECONDS; } catch (e) { /* ignore */ }
-
-    weddingAudio.play()
-      .then(() => { audioStarted = true; })
-      .catch(err => {
-        console.warn('Audio autoplay was blocked:', err);
-        armAudioFallback();                 // retry on first tap/key
-      });
+    seekDone = true;
   };
 
-  if (weddingAudio.readyState >= 1) {
-    seekAndPlay();
-  } else {
-    weddingAudio.addEventListener('loadedmetadata', seekAndPlay, { once: true });
+  if (weddingAudio.readyState >= 1) seek();
+  else weddingAudio.addEventListener('loadedmetadata', seek, { once: true });
+
+  const p = weddingAudio.play();
+  if (p && p.then) {
+    p.then(() => { audioStarted = true; seek(); })
+     .catch(err => {
+       console.warn('Audio autoplay was blocked:', err);
+       armAudioFallback();
+     });
   }
 }
 
@@ -1462,7 +1462,7 @@ playWeddingAudio();
 })();
 
 /* ============================================================
-   7. SAFETY NET — never leave the visitor stuck on the intro
+   7. SAFETY NET — never leave a visitor stuck (2 minutes)
    ============================================================ */
 (function () {
   window.setTimeout(() => {
@@ -1474,15 +1474,11 @@ playWeddingAudio();
       window.setTimeout(() => { if (intro.parentNode) intro.remove(); }, 1500);
       if (typeof window.startGuidedTour === 'function') window.startGuidedTour();
     }
-  }, 12000);
+  }, 120000);
 })();
 
 /* ============================================================
    8. GUIDED AUTO-SCROLL TOUR
-   ------------------------------------------------------------
-   Every section is exactly one viewport tall, so each step
-   simply aligns a section top with the top of the screen.
-   Any user interaction (wheel / swipe / key / tap) pauses it.
    ============================================================ */
 (function () {
   const html = document.documentElement;
@@ -1493,52 +1489,43 @@ playWeddingAudio();
   const btnIcon = btn.querySelector('.tour-btn-icon');
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  /* ---- the storyboard: edit / reorder / retime freely ---- */
   const STEPS = [
     { target: '.hero',          pause: 4000 },
     { target: '#countdown',     pause: 4000 },
 
-    /* Our Story — intro panel, then one panel per paragraph */
     { target: '#story-intro',   pause: 4000 },
     { target: '#story-p1',      pause: 6500 },
     { target: '#story-p2',      pause: 6500 },
     { target: '#story-p3',      pause: 7000 },
     { target: '#story-p4',      pause: 4500 },
 
-    /* The Day */
     { target: '#day',           pause: 4000 },
     { target: '#day-timeline',  pause: 5500 },
 
-    /* Venue → map → travel */
     { target: '#venue',         pause: 4500 },
     { target: '#map',           pause: 4000 },
     { target: '#travel',        pause: 5000 },
 
-    /* Gallery */
     { target: '#gallery',       pause: 4000 },
 
-    /* FAQ → gift */
     { target: '#faq',           pause: 5000 },
     { target: '#gift',          pause: 4000 },
 
-    /* RSVP — final stop */
     { target: '#rsvp',          pause: 0 }
   ];
 
-  let state = 'idle';   // idle | running | paused
+  let state = 'idle';
   let index = 0;
   let token = 0;
   let rafId = null, rafDone = null;
   let timerId = null, timerDone = null;
 
-  /* ---------- small helpers ---------- */
   function setBtn(label, icon) {
     if (btnText) btnText.textContent = label;
     if (btnIcon) btnIcon.textContent = icon;
     btn.setAttribute('aria-label', label);
   }
 
-  /* each section = exactly one screen ⇒ align its top with the viewport top */
   function scrollTarget(el) {
     const y = el.getBoundingClientRect().top + window.scrollY;
     const max = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
@@ -1587,7 +1574,6 @@ playWeddingAudio();
     if (timerDone) { const f = timerDone; timerDone = null; f(); }
   }
 
-  /* ---------- the run loop ---------- */
   async function run() {
     const my = ++token;
 
@@ -1613,7 +1599,6 @@ playWeddingAudio();
     }
   }
 
-  /* ---------- public controls ---------- */
   function start(fromIndex) {
     if (REDUCED) return;
 
@@ -1651,7 +1636,6 @@ playWeddingAudio();
     else                          start(0);
   });
 
-  /* ---------- let the visitor take over at any moment ---------- */
   function interrupt() {
     if (state === 'running') pause();
   }
@@ -1670,7 +1654,6 @@ playWeddingAudio();
     interrupt();
   }, true);
 
-  /* ---------- expose to the intro ---------- */
   window.startGuidedTour = () => start(0);
   window.pauseGuidedTour = pause;
 })();
