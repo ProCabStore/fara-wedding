@@ -161,6 +161,8 @@ a{ color:inherit; text-decoration:none; }
   .intro-eyebrow,.intro-monogram,.intro-rule,.intro-date,.intro-enter,.intro-hint{
     animation:none !important; opacity:1 !important; transform:none !important; width:auto !important;
   }
+  .story-bg img{ transition:none; }
+  .story-scene:hover .story-bg img{ transform:scale(1.02); }
 }
 
 /* ============================================================
@@ -361,49 +363,106 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
 }
 
 /* ============================================================
-   8. STORY
+   8. STORY — FULL-BLEED PHOTO WITH A SOFT IVORY FADE
+      (no panel: the picture is never covered)
    ============================================================ */
-.story-intro .story-grid{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:clamp(2rem, 5vw, 4rem);
-  align-items:center;
-}
-.story-media{
+.story-scene{
   position:relative;
-  width:100%;
-  aspect-ratio:4/5;
-  max-height:64vh;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:flex-end;      /* words sit low, over the fade */
+  text-align:center;
+  color:var(--ink);
+  overflow:hidden;
+  isolation:isolate;
+  padding:calc(var(--nav-h) + 6vh) clamp(1rem, 4vw, 1.8rem) clamp(2.4rem, 7vh, 4.5rem);
+}
+.story-scene.is-reversed{
+  justify-content:flex-start;
+  padding-top:calc(var(--nav-h) + 7vh);
+  padding-bottom:6vh;
+}
+
+/* the photograph — full bleed, unobstructed */
+.story-bg{
+  position:absolute;
+  inset:0;
+  z-index:-2;
   overflow:hidden;
   background:var(--cream);
 }
-.story-media img{
-  width:100%; height:100%; object-fit:cover;
-  transition:transform 1.6s cubic-bezier(.22,.61,.36,1);
+.story-bg img{
+  width:100%; height:100%;
+  object-fit:cover; object-position:center;
+  filter:saturate(.92) contrast(.98) brightness(1.04);
+  transform:scale(1.02);
+  transition:transform 2.4s cubic-bezier(.22,.61,.36,1);
 }
-.story-media:hover img{ transform:scale(1.05); }
-.story-media::after{
-  content:''; position:absolute; inset:0;
-  border:1px solid rgba(255,255,255,.45);
-  margin:12px; pointer-events:none;
-}
-.story-copy{ text-align:left; }
+.story-scene:hover .story-bg img{ transform:scale(1.06); }
 
-/* the four paragraph panels */
-.story-para{ text-align:center; }
-.story-para .wrap-narrow{ max-width:720px; }
+/* the photo dissolves into the page — this is the only thing behind the text */
+.story-fade{
+  position:absolute;
+  left:0; right:0; bottom:0;
+  height:68%;
+  z-index:-1;
+  pointer-events:none;
+  background:linear-gradient(180deg,
+    rgba(251,248,243,0)    0%,
+    rgba(251,248,243,.28)  24%,
+    rgba(251,248,243,.72)  46%,
+    rgba(251,248,243,.94)  66%,
+    rgba(251,248,243,1)    84%,
+    var(--ivory)          100%);
+}
+.story-scene.is-reversed .story-fade{
+  top:0; bottom:auto;
+  background:linear-gradient(0deg,
+    rgba(251,248,243,0)    0%,
+    rgba(251,248,243,.28)  24%,
+    rgba(251,248,243,.72)  46%,
+    rgba(251,248,243,.94)  66%,
+    rgba(251,248,243,1)    84%,
+    var(--ivory)          100%);
+}
+
+/* the words — no box, just a gentle halo for safety */
+.story-content{
+  position:relative;
+  z-index:1;
+  width:100%;
+  max-width:660px;
+}
+.story-content--wide{ max-width:740px; }
+
+.story-scene .eyebrow{
+  color:var(--gold);
+  margin-bottom:.9rem;
+}
+.story-scene .section-title{ color:var(--ink); }
+.story-scene .section-title .script-accent{ color:var(--gold); }
+.story-scene .lead{ color:var(--muted); }
+.story-scene .ornament::before,
+.story-scene .ornament::after{
+  background:linear-gradient(90deg, transparent, var(--gold-light), transparent);
+}
+.story-scene .ornament span{ color:var(--gold); }
+
 .story-lead{
   font-family:var(--serif);
-  font-size:clamp(1.1rem, 2.5vw, 1.38rem);
-  line-height:1.95;
+  font-size:clamp(1.06rem, 2.4vw, 1.32rem);
+  line-height:1.92;
   color:var(--ink);
   text-wrap:pretty;
+  text-shadow:0 1px 14px rgba(251,248,243,.92),
+              0 1px 3px rgba(251,248,243,.85);
 }
 .story-sign{
   font-family:var(--script);
   font-size:clamp(1.8rem, 5vw, 2.4rem);
   color:var(--gold);
-  margin-top:2rem;
+  margin-top:1.6rem;
 }
 
 /* ============================================================
@@ -716,16 +775,8 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
    ============================================================ */
 @media (max-width: 900px){
   :root{ --nav-h:64px; }
-
-  .story-intro .story-grid{ grid-template-columns:1fr; gap:1.6rem; }
-  .story-media{
-    aspect-ratio:16/10;
-    max-height:34vh;
-    max-width:520px;
-    margin-inline:auto;
-  }
-  .story-copy{ text-align:center; }
-  .story-copy .ornament{ margin-inline:auto; }
+  .story-fade{ height:74%; }
+  .story-scene.is-reversed .story-fade{ height:74%; }
 }
 
 @media (max-width: 640px){
@@ -776,6 +827,20 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   .tour-btn{ right:.7rem; bottom:.7rem; padding:.55rem .85rem; font-size:.48rem; letter-spacing:.16em; }
 
   .rsvp-deadline{ font-size:.54rem; padding:.5rem 1.1rem; }
+
+  /* story chapters — taller fade so long paragraphs stay on the light area */
+  .story-scene{
+    padding:calc(var(--nav-h) + 4vh) 1.05rem 2rem;
+  }
+  .story-scene.is-reversed{
+    padding-top:calc(var(--nav-h) + 4.5vh);
+    padding-bottom:1.6rem;
+  }
+  .story-fade{ height:88%; }
+  .story-scene.is-reversed .story-fade{ height:88%; }
+  .story-lead{ font-size:1.02rem; line-height:1.85; }
+  .story-sign{ margin-top:1.2rem; }
+  .story-bg img{ filter:saturate(.9) contrast(.97) brightness(1.05); }
 }
 </style>
 </head>
@@ -791,7 +856,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   <div class="intro-inner">
     <p class="intro-eyebrow">The Wedding Of</p>
 
-    <div class="intro-monogram">Faizol<span>&amp;</span>Rabiatul</div>
+    <div class="intro-monogram">Pejo<span>&amp;</span>Atul</div>
 
     <div class="intro-rule"></div>
 
@@ -851,59 +916,88 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
   </div>
 </section>
 
-<!-- ============================== STORY · INTRO PANEL ============================== -->
-<section class="section story-intro" id="story-intro">
-  <div class="wrap">
-    <div class="story-grid">
-      <div class="story-media reveal">
-        <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1200&q=80"
-             alt="Faizol & Rabiatul together" loading="lazy" />
-      </div>
+<!-- ============================== STORY · INTRO ============================== -->
+<section class="section story-scene" id="story-intro">
+  <div class="story-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=1800&q=80"
+         alt="" loading="lazy"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80';" />
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
 
-      <div class="story-copy reveal">
-        <p class="eyebrow">Our Story</p>
-        <h2 class="section-title">
-          A love that grew<br>
-          <span class="script-accent">quietly, and then all at once</span>
-        </h2>
-        <div class="ornament"><span>✦</span></div>
-        <p class="lead">Four small chapters, one long story — told here in the order it happened.</p>
-      </div>
-    </div>
+  <div class="story-content story-content--wide reveal">
+    <p class="eyebrow">Our Story</p>
+    <h2 class="section-title">
+      A love that grew<br>
+      <span class="script-accent">quietly, and then all at once</span>
+    </h2>
+    <div class="ornament"><span>✦</span></div>
+    <p class="lead">Four small chapters, one long story — told here in the order it happened.</p>
   </div>
 </section>
 
-<!-- ============================== STORY · PARAGRAPH PANELS ============================== -->
-<section class="section story-para" id="story-p1">
-  <div class="wrap-narrow reveal">
-    <p class="eyebrow">Our Story · I</p>
+<!-- ============================== STORY · CHAPTER I ============================== -->
+<section class="section story-scene" id="story-p1">
+  <div class="story-bg" aria-hidden="true">
+    <img src="Watercolour Classroom Friendship Moment.png"
+         alt="" loading="lazy"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80';" />
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
+
+  <div class="story-content reveal">
+    <p class="eyebrow">Chapter I · Our Story</p>
     <p class="lead story-lead">
       It began with a whisper of curiosity, a single glance through a small, worn hole in a kopiah. In the bustling classroom of 2010, a boy’s world paused, captivated by the new girl introducing herself. He was a mystery to her, a face in the crowd, and she was a universe he was too shy to explore. They orbited each other for the rest of primary school, two planets on separate paths, knowing so little until the day they were pulled apart.
     </p>
   </div>
 </section>
 
-<section class="section story-para" id="story-p2">
-  <div class="wrap-narrow reveal">
-    <p class="eyebrow">Our Story · II</p>
+<!-- ============================== STORY · CHAPTER II ============================== -->
+<section class="section story-scene is-reversed" id="story-p2">
+  <div class="story-bg" aria-hidden="true">
+    <img src="Split-Screen Moonlit Smartphone Chats 2.png"
+         alt="" loading="lazy"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80';" />
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
+
+  <div class="story-content reveal">
+    <p class="eyebrow">Chapter II · Our Story</p>
     <p class="lead story-lead">
       Years dissolved, but fate, it seemed, was just waiting for a better moment. Enter the online world — a digital bridge across the distance. The boy, now braver, reached out. Their screens lit up with a rekindled connection, and they became silent, constant witnesses to each other’s lives, never missing an update, cheering from afar as they grew from boy to man, from girl to woman.
     </p>
   </div>
 </section>
 
-<section class="section story-para" id="story-p3">
-  <div class="wrap-narrow reveal">
-    <p class="eyebrow">Our Story · III</p>
+<!-- ============================== STORY · CHAPTER III ============================== -->
+<section class="section story-scene" id="story-p3">
+  <div class="story-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1515934751635-c81c6bc9a2d8?auto=format&fit=crop&w=1800&q=80"
+         alt="" loading="lazy"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80';" />
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
+
+  <div class="story-content reveal">
+    <p class="eyebrow">Chapter III · Our Story</p>
     <p class="lead story-lead">
       The road ahead was winding, but it was sunlit. To love each other meant walking a path that held its share of challenges—but also warmth, laughter, and a thousand small joys waiting to be found. They both knew it, a quiet, hopeful truth that shimmered between them. And the girl, with a heart braver than ever, entrusted him with her heart anyway. And the boy, who had grown strong but was still so weak against the force of her love, surrendered. It was the easiest, and most wonderful, choice he ever made.
     </p>
   </div>
 </section>
 
-<section class="section story-para" id="story-p4">
-  <div class="wrap-narrow reveal">
-    <p class="eyebrow">Our Story · IV</p>
+<!-- ============================== STORY · CHAPTER IV ============================== -->
+<section class="section story-scene is-reversed" id="story-p4">
+  <div class="story-bg" aria-hidden="true">
+    <img src="https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1800&q=80"
+         alt="" loading="lazy"
+         onerror="this.onerror=null;this.src='https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1800&q=80';" />
+  </div>
+  <div class="story-fade" aria-hidden="true"></div>
+
+  <div class="story-content reveal">
+    <p class="eyebrow">Chapter IV · Our Story</p>
     <p class="lead story-lead">
       Their story—once the tale of two strangers who found their way into each other’s lives—has now become a promise to walk through life together.
     </p>
@@ -1269,7 +1363,7 @@ body.intro-done .hero-inner{ animation:heroFade 1.8s .2s cubic-bezier(.22,.61,.3
    ⚙️  CONFIG — edit these
    ============================================================ */
 const WEDDING_DATE        = new Date('2026-12-18T15:30:00'); // 18 Dec 2026, guest arrival
-const AUDIO_START_SECONDS = 15 ;                              // start playback at 0:30
+const AUDIO_START_SECONDS = 17 ;                              // start playback at 0:30
 const AUDIO_VOLUME        = 0.85;                            // 0.0 – 1.0
 
 const AUTO_ENTER_MS       = 999999999; // intro waits for the visitor's tap (that tap unlocks the song)
@@ -1490,13 +1584,13 @@ playWeddingAudio();
   const REDUCED = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   const STEPS = [
-    { target: '.hero',          pause: 4000 },
-    { target: '#countdown',     pause: 4000 },
+    { target: '.hero',          pause: 3000 },
+    { target: '#countdown',     pause: 2500 },
 
     { target: '#story-intro',   pause: 4000 },
-    { target: '#story-p1',      pause: 6500 },
-    { target: '#story-p2',      pause: 6500 },
-    { target: '#story-p3',      pause: 7000 },
+    { target: '#story-p1',      pause: 7500 },
+    { target: '#story-p2',      pause: 7500 },
+    { target: '#story-p3',      pause: 8000 },
     { target: '#story-p4',      pause: 4500 },
 
     { target: '#day',           pause: 4000 },
